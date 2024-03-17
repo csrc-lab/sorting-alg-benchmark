@@ -1,13 +1,25 @@
-#include "quick_sort.h"
-#include "heap_sort.h"
-#include<iostream>
+#include <ctime>  //time
+#include <iostream>
+#include <memory>  //std::unique_ptr, std::make_unique
 #include <vector>
-#include <memory> //std::unique_ptr, std::make_unique
+
+#include "heap_sort.h"
+#include "merge_sort.h"
+#include "quick_sort.h"
+
+const int numbers = 100;
 
 int main() {
-    std::vector<int> data = {8,10,6,3,1,2,7,5,9};
+    srand(time(NULL));
+
+    std::vector<int> data;
+    for (int i = 0; i < numbers; i++) {
+        data.push_back(rand() % 100);
+    }
+
     // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<QuickSort>();
-    std::unique_ptr<SortAlgorithm> sorter = std::make_unique<HeapSort>();
+    // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<HeapSort>();
+    std::unique_ptr<SortAlgorithm> sorter = std::make_unique<MergeSort>();
     sorter->sort(data);
     for (int &ele : data) {
         std::cout << ele << " ";
