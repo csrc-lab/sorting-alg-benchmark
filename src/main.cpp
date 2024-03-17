@@ -5,6 +5,7 @@
 
 #include "heap_sort.h"
 #include "insertion_sort.h"
+#include "intro_sort.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
 #include "tim_sort.h"
@@ -26,6 +27,7 @@ int main() {
     // std::unique_ptr<SortAlgorithm> sorter =
     // std::make_unique<InsertionSort>();
     std::unique_ptr<SortAlgorithm> sorter = std::make_unique<TimSort>();
+    // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<IntroSort>();
     sorter->sort(data);
     std::cout << "Sorted data:\n";
     for (int &ele : data) {
