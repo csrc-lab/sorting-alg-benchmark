@@ -8,4 +8,6 @@ class MergeSort : public SortAlgorithm {
    private:
     void merge(std::vector<int> &data, int beg, int mid, int end);
     void sort(std::vector<int> &data, int beg, int end);
+
+    friend class TimSort;
 };

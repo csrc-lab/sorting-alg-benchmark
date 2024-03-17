@@ -11,6 +11,7 @@ void MergeSort::sort(std::vector<int> &data, int beg, int end) {
     }
 }
 
+// TODO: Galloping mode for time sort
 void MergeSort::merge(std::vector<int> &data, int beg, int mid, int end) {
     int n1 = mid - beg + 1;
     int n2 = end - mid;
