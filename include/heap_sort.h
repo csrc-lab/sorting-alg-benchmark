@@ -1,5 +1,6 @@
 #pragma once
 #include "sort_algorithm.h"
+#include "intro_sort.h"
 
 class HeapSort : public SortAlgorithm
 {

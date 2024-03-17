@@ -7,6 +7,7 @@
 #include "merge_sort.h"
 #include "quick_sort.h"
 #include "insertion_sort.h"
+#include "intro_sort.h"
 
 const int numbers = 100;
 
@@ -21,7 +22,8 @@ int main() {
     // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<QuickSort>();
     // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<HeapSort>();
     // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<MergeSort>();
-    std::unique_ptr<SortAlgorithm> sorter = std::make_unique<InsertionSort>();
+    // std::unique_ptr<SortAlgorithm> sorter = std::make_unique<InsertionSort>();
+    std::unique_ptr<SortAlgorithm> sorter = std::make_unique<IntroSort>();
     sorter->sort(data);
     for (int &ele : data) {
         std::cout << ele << " ";

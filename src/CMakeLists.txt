@@ -3,4 +3,5 @@ add_library(SortingLib
     heap_sort.cpp
     merge_sort.cpp
     insertion_sort.cpp
+    intro_sort.cpp
 )
