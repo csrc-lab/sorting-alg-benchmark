@@ -1,14 +1,4 @@
 #include "quick_sort.h"
-#include <iostream>
-
-void printVector(const std::vector<int> &data)
-{
-    for (int ele : data)
-    {
-        std::cout << ele << " ";
-    }
-    std::cout << std::endl;
-}
 
 void QuickSort::sort(std::vector<int> &data) {
     sort(data, 0, data.size()-1);
