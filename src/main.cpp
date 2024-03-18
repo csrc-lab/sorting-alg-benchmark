@@ -17,16 +17,19 @@
 
 const int numbers = 68;
 const int max = 1000;
+const int ITERATIONS = 10;
 
 std::vector<int> loadData(const std::string &filename) {
     try {
         std::vector<int> data;
-        std::string concatFilename = "../data/" + filename;
+        std::string concatFilename = "../data/" + filename + ".txt";
         std::ifstream file(concatFilename);
         int value;
         while (file >> value) {
             data.push_back(value);
         }
+        std::cout << "Data loaded from " << filename << std::endl;
+        std::cout << "file size: " << data.size() << " elements\n" << std::endl;
         return data;
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
@@ -45,7 +48,7 @@ static void benchmarkSort(benchmark::State &state, const std::vector<int> &data)
 
 template <typename SortAlgorithm>
 void registerBenchmark(const std::vector<int> &data, const std::string &name) {
-    benchmark::RegisterBenchmark(name.c_str(), benchmarkSort<SortAlgorithm>, data);
+    benchmark::RegisterBenchmark(name.c_str(), benchmarkSort<SortAlgorithm>, data)->Iterations(ITERATIONS);
 }
 
 int main(int argc, char **argv) {
