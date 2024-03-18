@@ -19,16 +19,16 @@ const int numbers = 68;
 const int max = 1000;
 const int ITERATIONS = 10;
 
-std::vector<int> loadData(const std::string &filename) {
+std::vector<int> loadData(const std::string &filename, const int size) {
     try {
         std::vector<int> data;
-        std::string concatFilename = "../data/" + filename + ".txt";
+        std::string concatFilename = "../data/" + filename + "/" + std::to_string(size) + ".txt";
         std::ifstream file(concatFilename);
         int value;
         while (file >> value) {
             data.push_back(value);
         }
-        std::cout << "Data loaded from " << filename << std::endl;
+        std::cout << "Data loaded from " << concatFilename << std::endl;
         std::cout << "file size: " << data.size() << " elements\n" << std::endl;
         return data;
     } catch(const std::exception& e) {
@@ -52,17 +52,21 @@ void registerBenchmark(const std::vector<int> &data, const std::string &name) {
 }
 
 int main(int argc, char **argv) {
+    std::vector<int> sizes = {100, 1000, 10000, 100000, 1000000};
     if (argc > 1) {
         std::string filename = argv[1];
-        std::vector<int> data = loadData(filename);
+        int size = std::stoi(argv[2]);
+        std::vector<int> data = loadData(filename, size);
         registerBenchmark<InsertionSort>(data, "InsertionSort");
         registerBenchmark<HeapSort>(data, "HeapSort");
         registerBenchmark<IntroSort>(data, "IntroSort");
         registerBenchmark<MergeSort>(data, "MergeSort");
         registerBenchmark<QuickSort>(data, "QuickSort");
+        benchmark::RunSpecifiedBenchmarks();
+        std::cout << "----------------------------------------\n";
+        std::cout << "⬆️  Benchmarking with " << size << " elements at " << filename << " distribution ⬆️\n";
     } else {
         std::cout << "No input file provided\n";
     }
-    benchmark::RunSpecifiedBenchmarks();
     return 0;
 }
