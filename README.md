@@ -3,11 +3,17 @@ A comprehensive C++ project benchmarking the performance of various sorting algo
 
 ## How to Run
 0. Make sure you have installed `CMake`, `make`, and a C++ compiler (e.g., g++)
-1. Clone the repository
+1. Clone the repository and navigate to the project directory
     ```bash
     git clone https://github.com/NTUCSRC/sorting-alg-benchmark.git
+    cd sorting-alg-benchmark
     ```
-2. Run the following commands in the terminal:
+2. Generate testing data
+    ```
+    cd data
+    python3 generate.py
+    ```
+3. Run the following commands in the terminal:
     ```bash
     cd sorting-alg-benchmark
     mkdir build
