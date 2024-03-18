@@ -69,17 +69,16 @@ def save_distribution(distribution, title, path):
         f.write(" ".join(str(x) for x in distribution))
 # Example usage
 if __name__ == "__main__":
-    size = 1000  # Change the size of the distribution as needed
-    
-    distributions = [
-        ("random", generate_random_distribution(size)),
-        ("sorted", generate_sorted_distribution(size)),
-        ("scrambled", generate_slightly_scrambled(size, scramble_percentage=5)),
-        ("sorted_blocks", generate_sorted_blocks(size, block_size=10)),
-        ("single_big_swap", generate_single_big_swap(size)),
-        ("reversed", generate_reversed_distribution(size)),
-        ("few_unique", generate_few_unique_distribution(size, unique_values=5)),
-    ]
-    
-    for title, dist in distributions:
-        save_distribution(dist, title, f"{title}.txt")
+    sizes = [100, 1000, 10000, 100000, 1000000]
+    for size in sizes:
+        distributions = [
+            ("random", generate_random_distribution(size)),
+            ("sorted", generate_sorted_distribution(size)),
+            ("scrambled", generate_slightly_scrambled(size, scramble_percentage=5)),
+            ("sorted_blocks", generate_sorted_blocks(size, block_size=10)),
+            ("single_big_swap", generate_single_big_swap(size)),
+            ("reversed", generate_reversed_distribution(size)),
+            ("few_unique", generate_few_unique_distribution(size, unique_values=5)),
+        ]
+        for title, dist in distributions:
+            save_distribution(dist, title, f"{title}/{size}.txt")
