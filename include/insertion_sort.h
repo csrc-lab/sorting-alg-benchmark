@@ -3,9 +3,9 @@
 #include "intro_sort.h"
 
 class InsertionSort : public SortAlgorithm {
-   public:
+public:
     void sort(std::vector<int> &data) override;
-   private:
+private:
     void sort(std::vector<int> &data, int beg, int end);
     friend class IntroSort;
     friend class TimSort;

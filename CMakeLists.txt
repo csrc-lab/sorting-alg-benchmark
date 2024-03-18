@@ -13,5 +13,10 @@ add_subdirectory(src)
 
 # add the executable
 add_executable(SortingAlgorithmBenchmark src/main.cpp)
+
+# Google Benchmark
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+add_subdirectory(external/benchmark)
+target_link_libraries(SortingAlgorithmBenchmark benchmark::benchmark)
 # link the executable to the SortingAlgorithmBenchmark library
 target_link_libraries(SortingAlgorithmBenchmark SortingLib)
