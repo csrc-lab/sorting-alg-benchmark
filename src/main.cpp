@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>  //std::unique_ptr, std::make_unique
 #include <vector>
+#include <benchmark/benchmark.h>
 
 #include "heap_sort.h"
 #include "insertion_sort.h"
@@ -13,6 +14,9 @@
 const int numbers = 68;
 const int max = 1000;
 
+static void bench_quick_sort(benchmark::State &state) {
+       
+}
 int main() {
     srand(time(NULL));
 
