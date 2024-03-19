@@ -1,7 +1,10 @@
 #include "intro_sort.h"
-#include "quick_sort.h"
-#include "insertion_sort.h"
+
+#include <cmath>
+
 #include "heap_sort.h"
+#include "insertion_sort.h"
+#include "quick_sort.h"
 
 IntroSort::IntroSort() {
     quickSort = new QuickSort();
@@ -20,7 +23,8 @@ void IntroSort::sort(std::vector<int> &data) {
     intro_sort(data, beg, end, depthLimit);
 }
 
-void IntroSort::intro_sort(std::vector<int> &data, int beg, int end, int depthLimit) {
+void IntroSort::intro_sort(std::vector<int> &data, int beg, int end,
+                           int depthLimit) {
     int size = end - beg;
 
     // if partition size is low then do insertion sort

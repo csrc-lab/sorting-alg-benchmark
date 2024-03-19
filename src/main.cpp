@@ -1,18 +1,17 @@
-#include <ctime>  //time
+#include <ctime>    //time
+#include <fstream>  //std::ifstream
 #include <iostream>
-#include <fstream> //std::ifstream
 #include <memory>  //std::unique_ptr, std::make_unique
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "benchmark/benchmark.h"
-
-#include "sort_algorithm.h"
 #include "heap_sort.h"
 #include "insertion_sort.h"
 #include "intro_sort.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
+#include "sort_algorithm.h"
 #include "tim_sort.h"
 
 const int numbers = 68;
@@ -22,7 +21,8 @@ const int ITERATIONS = 10;
 std::vector<int> loadData(const std::string &filename, const int size) {
     try {
         std::vector<int> data;
-        std::string concatFilename = "../data/" + filename + "/" + std::to_string(size) + ".txt";
+        std::string concatFilename =
+            "../data/" + filename + "/" + std::to_string(size) + ".txt";
         std::ifstream file(concatFilename);
         int value;
         while (file >> value) {
@@ -31,15 +31,16 @@ std::vector<int> loadData(const std::string &filename, const int size) {
         std::cout << "Data loaded from " << concatFilename << std::endl;
         std::cout << "file size: " << data.size() << " elements\n" << std::endl;
         return data;
-    } catch(const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';
         return std::vector<int>();
     }
 }
 
 template <typename SortAlgorithm>
-static void benchmarkSort(benchmark::State &state, const std::vector<int> &data) {
-    for (auto _ : state) { // run multiple times and report the average time
+static void benchmarkSort(benchmark::State &state,
+                          const std::vector<int> &data) {
+    for (auto _ : state) {  // run multiple times and report the average time
         std::vector<int> copy(data);
         SortAlgorithm sorter;
         sorter.sort(copy);
@@ -48,7 +49,9 @@ static void benchmarkSort(benchmark::State &state, const std::vector<int> &data)
 
 template <typename SortAlgorithm>
 void registerBenchmark(const std::vector<int> &data, const std::string &name) {
-    benchmark::RegisterBenchmark(name.c_str(), benchmarkSort<SortAlgorithm>, data)->Iterations(ITERATIONS);
+    benchmark::RegisterBenchmark(name.c_str(), benchmarkSort<SortAlgorithm>,
+                                 data)
+        ->Iterations(ITERATIONS);
 }
 
 int main(int argc, char **argv) {
@@ -62,9 +65,11 @@ int main(int argc, char **argv) {
         registerBenchmark<IntroSort>(data, "IntroSort");
         registerBenchmark<MergeSort>(data, "MergeSort");
         registerBenchmark<QuickSort>(data, "QuickSort");
+        registerBenchmark<TimSort>(data, "TimSort");
         benchmark::RunSpecifiedBenchmarks();
         std::cout << "----------------------------------------\n";
-        std::cout << "⬆️  Benchmarking with " << size << " elements at " << filename << " distribution ⬆️\n";
+        std::cout << "⬆️  Benchmarking with " << size << " elements at "
+                  << filename << " distribution ⬆️\n";
     } else {
         std::cout << "No input file provided\n";
     }
